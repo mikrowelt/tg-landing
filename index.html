@@ -1,0 +1,2772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TG Platform — Own the Telegram Conversation | AI-Powered Intelligence</title>
+    <meta name="description" content="The only platform that monitors thousands of Telegram channels, detects trends in real-time, and engages audiences with AI-generated conversations that actually work.">
+    <meta name="keywords" content="Telegram monitoring, AI conversations, social listening, competitive intelligence, Telegram automation">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="TG Platform — Own the Telegram Conversation">
+    <meta property="og:description" content="Monitor thousands of channels, detect trends in real-time, and engage audiences with AI-generated conversations.">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TG Platform — Own the Telegram Conversation">
+    <meta name="twitter:description" content="AI-powered Telegram intelligence and engagement platform.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           CSS RESET & VARIABLES
+        ============================================ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            /* Backgrounds */
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a24;
+            --bg-elevated: #22222e;
+
+            /* Accent Colors */
+            --accent-cyan: #00d4ff;
+            --accent-violet: #7c3aed;
+            --accent-gradient: linear-gradient(135deg, #00d4ff 0%, #7c3aed 100%);
+
+            /* Text Hierarchy */
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #71717a;
+
+            /* Semantic Colors */
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+
+            /* Borders & Effects */
+            --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.15);
+            --glow-cyan: 0 0 40px rgba(0,212,255,0.3);
+            --glow-violet: 0 0 40px rgba(124,58,237,0.3);
+
+            /* Typography */
+            --font-display: 'Space Grotesk', system-ui, sans-serif;
+            --font-body: 'Inter', system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            /* Type Scale */
+            --text-hero: clamp(40px, 6vw, 68px);
+            --text-h2: clamp(32px, 4vw, 48px);
+            --text-h3: clamp(20px, 2.5vw, 28px);
+            --text-body-lg: clamp(16px, 1.5vw, 20px);
+            --text-body: 16px;
+            --text-small: 14px;
+            --text-micro: 12px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: var(--text-body);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-cyan);
+            color: var(--bg-primary);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            z-index: 9999;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 16px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        @media (max-width: 1439px) {
+            .container {
+                max-width: 1024px;
+            }
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-warm {
+            background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: var(--bg-primary);
+            padding: 16px 32px;
+            font-size: 16px;
+            box-shadow: 0 4px 24px rgba(0,212,255,0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 32px rgba(0,212,255,0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .btn-primary-lg {
+            padding: 20px 40px;
+            font-size: 18px;
+            box-shadow: 0 8px 40px rgba(0,212,255,0.35);
+        }
+
+        .btn-primary-xl {
+            padding: 24px 48px;
+            font-size: 20px;
+            box-shadow: 0 12px 48px rgba(0,212,255,0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-hover);
+            padding: 16px 32px;
+            font-size: 16px;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(0,212,255,0.05);
+            transform: translateY(-2px);
+        }
+
+        .btn .arrow {
+            transition: transform 0.25s ease;
+        }
+
+        .btn:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        /* Eyebrow */
+        .eyebrow {
+            font-family: var(--font-mono);
+            font-size: var(--text-micro);
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-cyan);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .eyebrow-warning {
+            color: var(--warning);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 120px 0;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 0;
+            }
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 64px;
+        }
+
+        .section-header .eyebrow {
+            justify-content: center;
+        }
+
+        .section-header h2 {
+            font-size: var(--text-h2);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: var(--text-body-lg);
+            color: var(--text-secondary);
+        }
+
+        /* Fade Up Animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ============================================
+           NAVIGATION
+        ============================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 72px;
+            background: rgba(10,10,15,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo .tg {
+            color: var(--accent-cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            position: relative;
+            transition: color 0.25s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-cyan);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: block;
+        }
+
+        .nav-cta .btn {
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 8px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 72px;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: calc(100vh - 72px);
+            background: var(--bg-secondary);
+            padding: 40px 24px;
+            transition: right 0.3s ease;
+            z-index: 999;
+            border-left: 1px solid var(--border);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 998;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .mobile-menu-link {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.25s;
+        }
+
+        .mobile-menu-link:hover {
+            color: var(--accent-cyan);
+        }
+
+        .mobile-menu .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* ============================================
+           HERO SECTION
+        ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 72px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        .hero-orb-1 {
+            width: 800px;
+            height: 800px;
+            top: -200px;
+            right: -200px;
+            background: radial-gradient(circle, rgba(0,212,255,0.15) 0%, transparent 70%);
+            animation: float 25s ease-in-out infinite;
+        }
+
+        .hero-orb-2 {
+            width: 600px;
+            height: 600px;
+            bottom: -100px;
+            left: -150px;
+            background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(30px, -30px); }
+            50% { transform: translate(-20px, 20px); }
+            75% { transform: translate(20px, 30px); }
+        }
+
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.04) 2px, transparent 2px);
+            background-size: 40px 40px;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 720px;
+        }
+
+        .hero-eyebrow {
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: var(--text-hero);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+        }
+
+        .hero-subtitle {
+            font-size: var(--text-body-lg);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .hero-microcopy {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-tertiary);
+        }
+
+        .hero-microcopy svg {
+            color: var(--success);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: auto;
+                padding: 120px 0 80px;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .hero-orb-1 {
+                width: 400px;
+                height: 400px;
+            }
+
+            .hero-orb-2 {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        /* ============================================
+           SOCIAL PROOF BAR
+        ============================================ */
+        .social-proof {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 48px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+
+        .stat-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 60px;
+            background: var(--border);
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--text-primary);
+            transition: color 0.3s;
+        }
+
+        .stat-item:hover .stat-value {
+            color: var(--accent-cyan);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        .trust-text {
+            text-align: center;
+            font-size: 15px;
+            font-style: italic;
+            color: var(--text-tertiary);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-item:nth-child(2)::after {
+                display: none;
+            }
+
+            .stat-item::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-value {
+                font-size: 40px;
+            }
+        }
+
+        /* ============================================
+           PROBLEM SECTION
+        ============================================ */
+        .problem {
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .problem-content {
+            max-width: 800px;
+            margin: 0 auto;
+            border-left: 4px solid;
+            border-image: linear-gradient(180deg, #f59e0b 0%, #ef4444 100%) 1;
+            padding-left: 40px;
+        }
+
+        .problem h2 {
+            font-size: var(--text-h2);
+            font-weight: 700;
+            margin-bottom: 32px;
+        }
+
+        .problem-body {
+            font-size: var(--text-body-lg);
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .problem-body p {
+            margin-bottom: 24px;
+        }
+
+        .problem-body strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .problem-body .danger {
+            color: var(--danger);
+        }
+
+        .problem-punchline {
+            border-top: 1px solid var(--border);
+            padding-top: 32px;
+            margin-top: 40px;
+        }
+
+        .problem-punchline p {
+            font-size: 24px;
+            font-weight: 600;
+            font-family: var(--font-display);
+        }
+
+        @media (max-width: 768px) {
+            .problem-content {
+                padding-left: 24px;
+            }
+
+            .problem-punchline p {
+                font-size: 20px;
+            }
+        }
+
+        /* ============================================
+           SOLUTION SECTION
+        ============================================ */
+        .solution {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .solution-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 64px;
+        }
+
+        .solution-intro h2 {
+            font-size: var(--text-h2);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .solution-tagline {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .benefits-list {
+            max-width: 600px;
+            margin: 0 auto 64px;
+            list-style: none;
+        }
+
+        .benefits-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .benefits-list li svg {
+            flex-shrink: 0;
+            margin-top: 4px;
+            color: var(--success);
+        }
+
+        .benefits-list strong {
+            color: var(--text-primary);
+        }
+
+        /* Flow Diagram */
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .flow-node {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            min-width: 160px;
+            transition: all 0.3s ease;
+        }
+
+        .flow-node:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .flow-node-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--accent-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .flow-node-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--bg-primary);
+        }
+
+        .flow-node-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .flow-connector {
+            display: flex;
+            align-items: center;
+            color: var(--accent-cyan);
+        }
+
+        .flow-connector svg {
+            width: 24px;
+            height: 24px;
+            animation: flow-pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes flow-pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .flow-diagram {
+                flex-direction: column;
+            }
+
+            .flow-connector svg {
+                transform: rotate(90deg);
+            }
+        }
+
+        /* ============================================
+           CAPABILITIES SECTION
+        ============================================ */
+        .capabilities {
+            background: var(--bg-secondary);
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .capability-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .capability-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .capability-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--accent-gradient);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .capability-icon svg {
+            width: 32px;
+            height: 32px;
+            color: var(--bg-primary);
+        }
+
+        .capability-tagline {
+            font-family: var(--font-mono);
+            font-size: var(--text-micro);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent-cyan);
+            margin-bottom: 8px;
+        }
+
+        .capability-card h3 {
+            font-size: var(--text-h3);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .capability-card hr {
+            border: none;
+            height: 1px;
+            background: var(--border);
+            margin-bottom: 16px;
+        }
+
+        .capability-description {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .capability-bullets {
+            list-style: none;
+        }
+
+        .capability-bullets li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .capability-bullets li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+
+        @media (max-width: 1024px) {
+            .capabilities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .capability-card {
+                padding: 32px 24px;
+            }
+        }
+
+        /* ============================================
+           USE CASES SECTION
+        ============================================ */
+        .use-cases {
+            background: var(--bg-primary);
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+        }
+
+        .use-case-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .use-case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .use-case-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .use-case-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--accent-cyan);
+        }
+
+        .use-case-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .use-case-card h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .use-case-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1200px) {
+            .use-cases-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .use-cases-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================
+           PRICING SECTION
+        ============================================ */
+        .pricing {
+            background: var(--bg-secondary);
+        }
+
+        .savings-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245,158,11,0.15);
+            color: var(--warning);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 16px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            align-items: stretch;
+        }
+
+        .pricing-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.03);
+            border: 2px solid transparent;
+            background:
+                linear-gradient(var(--bg-tertiary), var(--bg-tertiary)) padding-box,
+                var(--accent-gradient) border-box;
+            box-shadow: var(--glow-cyan);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05);
+        }
+
+        .pricing-badge {
+            background: var(--accent-gradient);
+            color: var(--bg-primary);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-bottom: 24px;
+            display: inline-block;
+            align-self: flex-start;
+        }
+
+        .pricing-tier {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-tertiary);
+            margin-bottom: 8px;
+        }
+
+        .pricing-price {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .pricing-price span {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .pricing-billing {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            margin-bottom: 4px;
+        }
+
+        .pricing-monthly {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-bottom: 24px;
+        }
+
+        .pricing-for {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            flex-grow: 1;
+            margin-bottom: 32px;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+        }
+
+        .pricing-features li svg {
+            flex-shrink: 0;
+            margin-top: 2px;
+            color: var(--success);
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .pricing-includes {
+            margin-top: 48px;
+            text-align: center;
+        }
+
+        .pricing-includes h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .pricing-includes ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .pricing-includes li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-tertiary);
+        }
+
+        .pricing-includes li svg {
+            color: var(--success);
+        }
+
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+                order: -1;
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-4px);
+            }
+        }
+
+        /* ============================================
+           COMPARISON TABLE
+        ============================================ */
+        .comparison {
+            background: var(--bg-primary);
+        }
+
+        .comparison-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .comparison-table {
+            width: 100%;
+            min-width: 700px;
+            border-collapse: collapse;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px 24px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table thead th {
+            background: var(--bg-tertiary);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+        }
+
+        .comparison-table thead th:last-child {
+            color: var(--accent-cyan);
+        }
+
+        .comparison-table tbody tr {
+            transition: background 0.2s;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .comparison-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 500;
+            color: var(--text-primary);
+            position: sticky;
+            left: 0;
+            background: var(--bg-secondary);
+        }
+
+        .comparison-table tbody tr:hover td:first-child {
+            background: rgba(18,18,26,0.98);
+        }
+
+        .comparison-table td:last-child {
+            background: rgba(0,212,255,0.03);
+        }
+
+        .check-yes {
+            color: var(--success);
+        }
+
+        .check-partial {
+            color: var(--warning);
+        }
+
+        .check-no {
+            color: var(--text-tertiary);
+        }
+
+        /* ============================================
+           FAQ SECTION
+        ============================================ */
+        .faq {
+            background: var(--bg-secondary);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .faq-item.active {
+            border-color: var(--accent-cyan);
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: var(--font-body);
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .faq-question:hover {
+            color: var(--accent-cyan);
+        }
+
+        .faq-question:focus {
+            outline: 2px solid var(--accent-cyan);
+            outline-offset: -2px;
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            color: var(--text-tertiary);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            color: var(--accent-cyan);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 0 24px 24px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           FINAL CTA SECTION
+        ============================================ */
+        .final-cta {
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .final-cta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .final-cta-orb {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(0,212,255,0.2) 0%, transparent 70%);
+            filter: blur(60px);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .final-cta .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .final-cta h2 {
+            font-size: var(--text-h2);
+            font-weight: 700;
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .final-cta-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+
+        .final-cta .btn {
+            margin-bottom: 24px;
+        }
+
+        .final-cta-microcopy {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            max-width: 450px;
+            margin: 0 auto 32px;
+        }
+
+        .trust-points {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .trust-points span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .trust-points svg {
+            color: var(--success);
+        }
+
+        /* ============================================
+           FOOTER
+        ============================================ */
+        .footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border);
+            padding: 80px 0 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand .nav-logo {
+            margin-bottom: 16px;
+        }
+
+        .footer-tagline {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            max-width: 250px;
+        }
+
+        .footer-email {
+            color: var(--accent-cyan);
+            font-size: 14px;
+        }
+
+        .footer-email:hover {
+            text-decoration: underline;
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+            color: var(--text-secondary);
+            transition: color 0.25s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 32px;
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================
+           FOCUS STATES
+        ============================================ */
+        a:focus,
+        button:focus {
+            outline: 2px solid var(--accent-cyan);
+            outline-offset: 2px;
+        }
+
+        /* ============================================
+           UTILITY CLASSES
+        ============================================ */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <a href="#" class="nav-logo" aria-label="TG Platform Home">
+                <span class="tg">TG</span>&nbsp;Platform
+            </a>
+            <ul class="nav-links">
+                <li><a href="#capabilities" class="nav-link">Features</a></li>
+                <li><a href="#use-cases" class="nav-link">Use Cases</a></li>
+                <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#contact" class="btn btn-primary">
+                    Talk to Sales
+                    <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+            <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" aria-hidden="true"></div>
+    <div class="mobile-menu" aria-hidden="true">
+        <ul class="mobile-menu-links">
+            <li><a href="#capabilities" class="mobile-menu-link">Features</a></li>
+            <li><a href="#use-cases" class="mobile-menu-link">Use Cases</a></li>
+            <li><a href="#pricing" class="mobile-menu-link">Pricing</a></li>
+            <li><a href="#faq" class="mobile-menu-link">FAQ</a></li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">
+            Talk to Sales
+            <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </div>
+
+    <main id="main">
+        <!-- Hero Section -->
+        <section class="hero" aria-label="Hero">
+            <div class="hero-bg">
+                <div class="hero-orb hero-orb-1"></div>
+                <div class="hero-orb hero-orb-2"></div>
+                <div class="hero-grid"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="eyebrow hero-eyebrow fade-up stagger-1">
+                        <span class="pulse-dot"></span>
+                        TELEGRAM INTELLIGENCE PLATFORM
+                    </div>
+                    <h1 class="fade-up stagger-2">
+                        <span class="gradient-text">Own</span> the Telegram Conversation.
+                    </h1>
+                    <p class="hero-subtitle fade-up stagger-3">
+                        The only platform that monitors thousands of channels, detects trends in real-time, and engages audiences with AI-generated conversations that actually work.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-primary btn-primary-lg fade-up stagger-4">
+                            Get Started — Talk to Sales
+                            <svg class="arrow" width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <p class="hero-microcopy fade-up stagger-5">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            No commitment. See if we're the right fit.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Bar -->
+        <section class="social-proof" aria-label="Statistics">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item fade-up stagger-1">
+                        <div class="stat-value" data-target="10000" data-suffix="+">0</div>
+                        <div class="stat-label">Channels Monitored</div>
+                    </div>
+                    <div class="stat-item fade-up stagger-2">
+                        <div class="stat-value" data-target="50000" data-suffix="+">0</div>
+                        <div class="stat-label">Events Detected Monthly</div>
+                    </div>
+                    <div class="stat-item fade-up stagger-3">
+                        <div class="stat-value" data-target="100000" data-suffix="+">0</div>
+                        <div class="stat-label">AI Conversations Generated</div>
+                    </div>
+                    <div class="stat-item fade-up stagger-4">
+                        <div class="stat-value" data-target="99.9" data-suffix="%" data-decimal="true">0</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                </div>
+                <p class="trust-text fade-up stagger-5">
+                    Trusted by marketing teams, intelligence analysts, and growth operators worldwide.
+                </p>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section class="problem" aria-label="The Problem">
+            <div class="container">
+                <div class="problem-content">
+                    <div class="eyebrow eyebrow-warning fade-up">THE PROBLEM</div>
+                    <h2 class="fade-up stagger-1">
+                        Telegram is <span class="gradient-text-warm">exploding</span>. You're missing it.
+                    </h2>
+                    <div class="problem-body fade-up stagger-2">
+                        <p>
+                            <strong>800+ million users.</strong> Millions of channels. Conversations that shape markets, opinions, and trends — happening right now.
+                        </p>
+                        <p>
+                            And you have <span class="danger">no visibility</span>.
+                        </p>
+                        <p>
+                            Your <strong>competitors</strong> are launching products in Telegram communities. <span class="danger">Crises</span> are brewing in niche groups. Viral moments are born and die before you even hear about them.
+                        </p>
+                        <p>
+                            Manual monitoring doesn't scale. Generic social tools don't support Telegram. And even if you could watch everything — how would you respond fast enough to matter?
+                        </p>
+                    </div>
+                    <div class="problem-punchline fade-up stagger-3">
+                        <p class="gradient-text">You need more than monitoring. You need an unfair advantage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section class="solution" aria-label="The Solution">
+            <div class="container">
+                <div class="solution-intro">
+                    <div class="eyebrow fade-up">THE SOLUTION</div>
+                    <h2 class="fade-up stagger-1">
+                        Introducing <span class="gradient-text">TG Platform</span>
+                    </h2>
+                    <p class="solution-tagline fade-up stagger-2">
+                        We built the operating system for Telegram dominance.
+                    </p>
+                </div>
+
+                <ul class="benefits-list">
+                    <li class="fade-up stagger-1">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M16.5 5.5L7.5 14.5L3.5 10.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Monitor every channel that matters — <strong>automatically</strong>.
+                    </li>
+                    <li class="fade-up stagger-2">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M16.5 5.5L7.5 14.5L3.5 10.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Detect events the moment they happen — <strong>with AI</strong>.
+                    </li>
+                    <li class="fade-up stagger-3">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M16.5 5.5L7.5 14.5L3.5 10.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Engage in conversations that <strong>feel human</strong> — because AI writes them.
+                    </li>
+                    <li class="fade-up stagger-4">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M16.5 5.5L7.5 14.5L3.5 10.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Scale without getting banned — because we <strong>built it right</strong>.
+                    </li>
+                </ul>
+
+                <div class="flow-diagram fade-up">
+                    <div class="flow-node">
+                        <div class="flow-node-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M4 4h16v16H4V4z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M9 9h6v6H9V9z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <span class="flow-node-label">Channels</span>
+                    </div>
+                    <div class="flow-connector">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="flow-node">
+                        <div class="flow-node-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <span class="flow-node-label">AI Detection</span>
+                    </div>
+                    <div class="flow-connector">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="flow-node">
+                        <div class="flow-node-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span class="flow-node-label">Auto Response</span>
+                    </div>
+                    <div class="flow-connector">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="flow-node">
+                        <div class="flow-node-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M22 4L12 14.01l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span class="flow-node-label">Results</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capabilities Section -->
+        <section class="capabilities" id="capabilities" aria-label="Capabilities">
+            <div class="container">
+                <div class="section-header">
+                    <div class="eyebrow fade-up">CAPABILITIES</div>
+                    <h2 class="fade-up stagger-1">See Everything. Miss Nothing.</h2>
+                    <p class="fade-up stagger-2">Four pillars of Telegram intelligence</p>
+                </div>
+
+                <div class="capabilities-grid">
+                    <div class="capability-card fade-up stagger-1">
+                        <div class="capability-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="capability-tagline">See Everything. Miss Nothing.</div>
+                        <h3>Real-Time Intelligence</h3>
+                        <hr>
+                        <p class="capability-description">
+                            Our AI watches hundreds of channels simultaneously and classifies events as they happen. Product launches, PR crises, viral moments, competitor moves — you'll know first.
+                        </p>
+                        <ul class="capability-bullets">
+                            <li>15+ event types detected automatically</li>
+                            <li>Urgency scoring (low → critical)</li>
+                            <li>Custom keyword alerts with regex</li>
+                            <li>Works 24/7 while you sleep</li>
+                        </ul>
+                    </div>
+
+                    <div class="capability-card fade-up stagger-2">
+                        <div class="capability-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="capability-tagline">Respond Instantly. Automatically.</div>
+                        <h3>Trigger-Based Automation</h3>
+                        <hr>
+                        <p class="capability-description">
+                            Set your conditions. The platform does the rest. When specific keywords appear, events are detected, or trends emerge — your response fires automatically.
+                        </p>
+                        <ul class="capability-bullets">
+                            <li>Keyword, event, or entity triggers</li>
+                            <li>Configurable delays for natural timing</li>
+                            <li>Rate limiting built-in</li>
+                            <li>Never miss a window again</li>
+                        </ul>
+                    </div>
+
+                    <div class="capability-card fade-up stagger-3">
+                        <div class="capability-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="capability-tagline">Conversations That Convert.</div>
+                        <h3>AI-Powered Engagement</h3>
+                        <hr>
+                        <p class="capability-description">
+                            Our AI generates multi-person dialogs that blend into any discussion. Natural tone. Perfect timing. Zero bot vibes.
+                        </p>
+                        <ul class="capability-bullets">
+                            <li>Multi-turn, multi-speaker conversations</li>
+                            <li>Russian and English fluency</li>
+                            <li>Adapts to any topic or brand</li>
+                            <li>Powered by Claude, OpenAI, or custom models</li>
+                        </ul>
+                    </div>
+
+                    <div class="capability-card fade-up stagger-4">
+                        <div class="capability-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="4" cy="6" r="2" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="20" cy="6" r="2" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="4" cy="18" r="2" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="20" cy="18" r="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M5.5 7.5L9.5 10.5M18.5 7.5L14.5 10.5M5.5 16.5L9.5 13.5M18.5 16.5L14.5 13.5" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="capability-tagline">Analytics That Matter.</div>
+                        <h3>Influence Intelligence</h3>
+                        <hr>
+                        <p class="capability-description">
+                            Track how content spreads. Identify who matters. Spot coordinated campaigns before they manipulate your audience.
+                        </p>
+                        <ul class="capability-bullets">
+                            <li>Content spread tracking across channels</li>
+                            <li>Influencer scoring and ranking</li>
+                            <li>Bot detection (heuristic + AI)</li>
+                            <li>Coordinated activity detection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases Section -->
+        <section class="use-cases" id="use-cases" aria-label="Use Cases">
+            <div class="container">
+                <div class="section-header">
+                    <div class="eyebrow fade-up">USE CASES</div>
+                    <h2 class="fade-up stagger-1">Built for teams who move fast</h2>
+                </div>
+
+                <div class="use-cases-grid">
+                    <div class="use-case-card fade-up stagger-1">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Brand Protection</h3>
+                        <p>Instant alerts when your brand is mentioned. Detect sentiment shifts before they become crises.</p>
+                    </div>
+
+                    <div class="use-case-card fade-up stagger-2">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 2v4M12 18v4" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3>Competitive Intelligence</h3>
+                        <p>Know what competitors announce before it hits the news. Track community reactions in real-time.</p>
+                    </div>
+
+                    <div class="use-case-card fade-up stagger-3">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Growth Marketing</h3>
+                        <p>Engage in relevant conversations at scale. Generate authentic discussions around your products.</p>
+                    </div>
+
+                    <div class="use-case-card fade-up stagger-4">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                                <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Market Research</h3>
+                        <p>Identify emerging trends and narratives. Understand what audiences actually talk about.</p>
+                    </div>
+
+                    <div class="use-case-card fade-up stagger-5">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 9v4M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Risk & Compliance</h3>
+                        <p>Monitor for coordinated campaigns. Detect bot activity and manipulation attempts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing" id="pricing" aria-label="Pricing">
+            <div class="container">
+                <div class="section-header">
+                    <div class="eyebrow fade-up">PRICING</div>
+                    <h2 class="fade-up stagger-1">Simple pricing. Serious capabilities.</h2>
+                    <p class="fade-up stagger-2">All plans include web dashboard, account health monitoring, and regular updates.</p>
+                    <div class="savings-badge fade-up stagger-3">
+                        <span>Save 15% with annual billing</span>
+                    </div>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card fade-up stagger-1">
+                        <div class="pricing-tier">Starter</div>
+                        <div class="pricing-price">$349<span>/mo</span></div>
+                        <div class="pricing-billing">billed annually</div>
+                        <div class="pricing-monthly">($399/month if monthly)</div>
+                        <p class="pricing-for">For small teams getting started with Telegram intelligence</p>
+                        <ul class="pricing-features">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Up to 100 channels
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Up to 5 accounts
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Basic event detection (5 types)
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                500 AI dialogs/month
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                5 active campaigns
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                3 active triggers
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Basic dashboard
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Email support (48h)
+                            </li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Talk to Sales</a>
+                    </div>
+
+                    <div class="pricing-card featured fade-up stagger-2">
+                        <span class="pricing-badge">Most Popular</span>
+                        <div class="pricing-tier">Professional</div>
+                        <div class="pricing-price">$899<span>/mo</span></div>
+                        <div class="pricing-billing">billed annually</div>
+                        <div class="pricing-monthly">($999/month if monthly)</div>
+                        <p class="pricing-for">For growing teams that need full automation</p>
+                        <ul class="pricing-features">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Up to 500 channels
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Up to 25 accounts
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Full event detection (15+ types)
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                2,500 AI dialogs/month
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Unlimited campaigns
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Unlimited triggers
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Full dashboard + influence scoring
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Heuristic bot detection
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Content spread tracking
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Priority email support (24h)
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Guided onboarding call
+                            </li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary">Talk to Sales</a>
+                    </div>
+
+                    <div class="pricing-card fade-up stagger-3">
+                        <div class="pricing-tier">Enterprise</div>
+                        <div class="pricing-price">Custom</div>
+                        <div class="pricing-billing">from $2,500/mo</div>
+                        <div class="pricing-monthly">&nbsp;</div>
+                        <p class="pricing-for">For organizations requiring maximum scale and customization</p>
+                        <ul class="pricing-features">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Unlimited channels
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Unlimited accounts
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Full + custom event types
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Unlimited AI dialogs
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                AI-powered bot detection
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Coordination detection
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Psychographic segmentation
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Custom AI models
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Full API access
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Dedicated Slack channel
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                White-glove onboarding
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                99.9% uptime SLA
+                            </li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Contact Sales</a>
+                    </div>
+                </div>
+
+                <div class="pricing-includes fade-up">
+                    <h4>All plans include</h4>
+                    <ul>
+                        <li>
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Web dashboard
+                        </li>
+                        <li>
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Account health monitoring
+                        </li>
+                        <li>
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Proxy management
+                        </li>
+                        <li>
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Profile sync
+                        </li>
+                        <li>
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Regular updates
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Table -->
+        <section class="comparison" aria-label="Comparison">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="fade-up">How we compare</h2>
+                </div>
+
+                <div class="comparison-wrapper fade-up stagger-1">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Capability</th>
+                                <th>Generic Social Tools</th>
+                                <th>DIY Scripts</th>
+                                <th>TG Platform</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Telegram Support</td>
+                                <td><span class="check-no">Limited/None</span></td>
+                                <td><span class="check-partial">Manual</span></td>
+                                <td><span class="check-yes">Native</span></td>
+                            </tr>
+                            <tr>
+                                <td>Real-time Monitoring</td>
+                                <td><span class="check-partial">Delayed</span></td>
+                                <td><span class="check-partial">Fragile</span></td>
+                                <td><span class="check-yes">Instant</span></td>
+                            </tr>
+                            <tr>
+                                <td>AI Event Detection</td>
+                                <td><span class="check-no">No</span></td>
+                                <td><span class="check-no">No</span></td>
+                                <td><span class="check-yes">15+ types</span></td>
+                            </tr>
+                            <tr>
+                                <td>Natural Conversations</td>
+                                <td><span class="check-no">No</span></td>
+                                <td><span class="check-partial">Template-only</span></td>
+                                <td><span class="check-yes">AI-generated</span></td>
+                            </tr>
+                            <tr>
+                                <td>Automated Triggers</td>
+                                <td><span class="check-partial">Basic</span></td>
+                                <td><span class="check-partial">DIY</span></td>
+                                <td><span class="check-yes">Full automation</span></td>
+                            </tr>
+                            <tr>
+                                <td>Influence Analytics</td>
+                                <td><span class="check-partial">Limited</span></td>
+                                <td><span class="check-no">No</span></td>
+                                <td><span class="check-yes">Built-in</span></td>
+                            </tr>
+                            <tr>
+                                <td>Bot Detection</td>
+                                <td><span class="check-no">No</span></td>
+                                <td><span class="check-no">No</span></td>
+                                <td><span class="check-yes">Heuristic + AI</span></td>
+                            </tr>
+                            <tr>
+                                <td>Account Safety</td>
+                                <td><span class="check-no">N/A</span></td>
+                                <td><span class="check-partial">Your problem</span></td>
+                                <td><span class="check-yes">Managed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Scalability</td>
+                                <td><span class="check-partial">Limited</span></td>
+                                <td><span class="check-no">Breaks at scale</span></td>
+                                <td><span class="check-yes">Built for it</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq" id="faq" aria-label="Frequently Asked Questions">
+            <div class="container">
+                <div class="section-header">
+                    <div class="eyebrow fade-up">FAQ</div>
+                    <h2 class="fade-up stagger-1">Common questions</h2>
+                </div>
+
+                <div class="faq-list">
+                    <div class="faq-item fade-up stagger-1">
+                        <button class="faq-question" aria-expanded="false">
+                            Is my data secure?
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Yes. Your data is encrypted at rest and in transit. We don't share or sell your data. Enterprise customers can request dedicated infrastructure.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-up stagger-2">
+                        <button class="faq-question" aria-expanded="false">
+                            How quickly can I get started?
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                After your sales call, most teams are live within 48-72 hours. We handle onboarding and initial configuration.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-up stagger-3">
+                        <button class="faq-question" aria-expanded="false">
+                            Do you provide the Telegram accounts?
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                No. You bring your own accounts. We provide the infrastructure to manage them safely and at scale.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-up stagger-4">
+                        <button class="faq-question" aria-expanded="false">
+                            What if I need more channels or accounts?
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                We offer flexible add-ons. Contact your account manager to adjust your plan anytime.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-up stagger-5">
+                        <button class="faq-question" aria-expanded="false">
+                            Is there a minimum commitment?
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Monthly plans have no commitment. Annual plans require 12-month commitment but save you 15%.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-up stagger-6">
+                        <button class="faq-question" aria-expanded="false">
+                            Can I integrate with my existing tools?
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Enterprise plans include full API access and webhook notifications for integration with any system.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-up">
+                        <button class="faq-question" aria-expanded="false">
+                            What languages does the AI support?
+                            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Russian and English are fully supported. Additional languages available on Enterprise plans.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="final-cta" id="contact" aria-label="Call to Action">
+            <div class="final-cta-bg">
+                <div class="final-cta-orb"></div>
+            </div>
+            <div class="container">
+                <h2 class="fade-up">Ready to own the Telegram conversation?</h2>
+                <p class="final-cta-subtitle fade-up stagger-1">
+                    Join the teams already using AI-powered intelligence to move faster than their competition.
+                </p>
+                <a href="mailto:sales@tgplatform.com" class="btn btn-primary btn-primary-xl fade-up stagger-2">
+                    Talk to Sales
+                    <svg class="arrow" width="20" height="20" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <p class="final-cta-microcopy fade-up stagger-3">
+                    No commitment required. We'll help you figure out if TG Platform is right for your needs.
+                </p>
+                <div class="trust-points fade-up stagger-4">
+                    <span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Free consultation
+                    </span>
+                    <span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Custom demo for your use case
+                    </span>
+                    <span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M13.5 4.5L6.5 11.5L2.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        No pressure, no BS
+                    </span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <span class="tg">TG</span>&nbsp;Platform
+                    </div>
+                    <p class="footer-tagline">The operating system for Telegram dominance.</p>
+                    <a href="mailto:sales@tgplatform.com" class="footer-email">sales@tgplatform.com</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="#capabilities">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#use-cases">Use Cases</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="mailto:sales@tgplatform.com">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TG Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // MOBILE MENU
+        // ============================================
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        function toggleMobileMenu() {
+            const isActive = hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isActive);
+            mobileMenu.setAttribute('aria-hidden', !isActive);
+            document.body.style.overflow = isActive ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', toggleMobileMenu);
+        mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', toggleMobileMenu);
+        });
+
+        // ============================================
+        // SCROLL ANIMATIONS
+        // ============================================
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const fadeUpObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeUpObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            fadeUpObserver.observe(el);
+        });
+
+        // ============================================
+        // COUNTER ANIMATION
+        // ============================================
+        function animateCounter(element, target, suffix = '', isDecimal = false) {
+            const duration = 2000;
+            const start = 0;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Ease out cubic
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = start + (target - start) * easeOut;
+
+                if (isDecimal) {
+                    element.textContent = current.toFixed(1) + suffix;
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString() + suffix;
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statValues = entry.target.querySelectorAll('.stat-value');
+                    statValues.forEach(stat => {
+                        const target = parseFloat(stat.dataset.target);
+                        const suffix = stat.dataset.suffix || '';
+                        const isDecimal = stat.dataset.decimal === 'true';
+                        animateCounter(stat, target, suffix, isDecimal);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const statsGrid = document.querySelector('.stats-grid');
+        if (statsGrid) {
+            statsObserver.observe(statsGrid);
+        }
+
+        // ============================================
+        // FAQ ACCORDION
+        // ============================================
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            const content = answer.querySelector('.faq-answer-content');
+
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                        otherItem.querySelector('.faq-answer').style.maxHeight = '0';
+                    }
+                });
+
+                // Toggle current item
+                item.classList.toggle('active');
+                question.setAttribute('aria-expanded', !isActive);
+
+                if (!isActive) {
+                    answer.style.maxHeight = content.offsetHeight + 'px';
+                } else {
+                    answer.style.maxHeight = '0';
+                }
+            });
+        });
+
+        // ============================================
+        // SMOOTH SCROLL FOR NAVIGATION
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const navHeight = document.querySelector('.nav').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ============================================
+        // NAVIGATION SCROLL EFFECT
+        // ============================================
+        const nav = document.querySelector('.nav');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                nav.style.background = 'rgba(10,10,15,0.95)';
+            } else {
+                nav.style.background = 'rgba(10,10,15,0.85)';
+            }
+
+            lastScroll = currentScroll;
+        }, { passive: true });
+
+        // ============================================
+        // PREFERS REDUCED MOTION
+        // ============================================
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        if (prefersReducedMotion.matches) {
+            document.querySelectorAll('.fade-up').forEach(el => {
+                el.classList.add('visible');
+            });
+
+            // Immediately show counter values
+            document.querySelectorAll('.stat-value').forEach(stat => {
+                const target = parseFloat(stat.dataset.target);
+                const suffix = stat.dataset.suffix || '';
+                const isDecimal = stat.dataset.decimal === 'true';
+                if (isDecimal) {
+                    stat.textContent = target.toFixed(1) + suffix;
+                } else {
+                    stat.textContent = Math.floor(target).toLocaleString() + suffix;
+                }
+            });
+        }
+
+        // ============================================
+        // HERO ANIMATIONS ON LOAD
+        // ============================================
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.hero .fade-up').forEach(el => {
+                el.classList.add('visible');
+            });
+        });
+    </script>
+</body>
+</html>
